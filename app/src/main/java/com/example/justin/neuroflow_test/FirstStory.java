@@ -1,7 +1,6 @@
 package com.example.justin.neuroflow_test;
 
 import android.os.Bundle;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
