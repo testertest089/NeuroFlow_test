@@ -5,11 +5,12 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.TextView;
 
-public class SecondStory extends AppCompatActivity {
+import com.example.justin.neuroflow_test.SecondScreen.OnButtonTappedListener;
 
-    private TextView mTextMessage;
+public class SecondStory extends AppCompatActivity implements OnButtonTappedListener {
+
+    BottomNavigationView navigation;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -17,14 +18,19 @@ public class SecondStory extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                case R.id.first_screen:
+                    FirstScreen FSfrag = FirstScreen.newInstance(-1);
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container, FSfrag)
+                            .commit();
                     return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
-                    return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                case R.id.second_screen:
+                    SecondScreen SSfrag = SecondScreen.newInstance();
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container, SSfrag)
+                            .commit();
                     return true;
             }
             return false;
@@ -34,11 +40,25 @@ public class SecondStory extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.second_screen);
+        setContentView(R.layout.main_activity);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        FirstScreen FSfrag = FirstScreen.newInstance(-1);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, FSfrag)
+                .commit();
+    }
+
+    public void onButtonTapped(int num){
+        navigation.setSelectedItemId(R.id.first_screen);
+        FirstScreen FSfrag = FirstScreen.newInstance(num);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, FSfrag)
+                .commit();
     }
 
 }

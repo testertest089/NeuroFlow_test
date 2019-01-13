@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 public class FirstStory extends AppCompatActivity {
 
@@ -27,6 +28,10 @@ public class FirstStory extends AppCompatActivity {
         Date dNow = new Date();
         SimpleDateFormat ft = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
         sb.append(ft.format(dNow));
+        sb.append("\n");
+        Random ran = new Random();
+        int num = ran.nextInt(3);
+        sb.append(num);
         mTextMessage.setText(sb.toString());
 
 //        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
