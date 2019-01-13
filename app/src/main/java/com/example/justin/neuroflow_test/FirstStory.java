@@ -11,6 +11,7 @@ import java.util.Random;
 public class FirstStory extends AppCompatActivity {
 
     private TextView mTextMessage;
+    String test = "test";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
